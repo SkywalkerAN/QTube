@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3, 
+  "name": "QTube, New YouTube AI Assistant",
+  "version": "1.0.0",
+  "description": "Ask AI questions on a YouTube Video",
+  
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  
+  "host_permissions": [
+    "https://*.youtube.com/*",
+    "https://generativelanguage.googleapis.com/*"
+  ],
+  
+  "action": {
+    "default_popup": "QTube_popup.html",
+    "default_title": "QTube - Ask AI about this video"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["QTube_content.js"],
+      "css": ["QTube_content.css"]
+    }
+  ],
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*"],
+      "matches": ["https://*.youtube.com/*"]
+    }
+  ]
+}

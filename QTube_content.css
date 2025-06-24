@@ -1,0 +1,275 @@
+/* QTube_content.css */
+
+#qtube-overlay {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 350px;
+    max-height: 500px; /* Set a max-height for the entire overlay */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    animation: qtube-slideIn 0.3s ease-out;
+    display: flex; /* Make it a flex container */
+    flex-direction: column; /* Stack children vertically */
+    /* NEW: Allow the entire overlay to scroll if its content exceeds max-height */
+    overflow-y: auto; 
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+@keyframes qtube-slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.qtube-overlay-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows it to take up available space within scrollable parent */
+    /* Remove max-height here as the parent #qtube-overlay now handles overall height */
+}
+
+.qtube-header {
+    background: #4285f4;
+    color: white;
+    padding: 12px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px 10px 0 0;
+    flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+.qtube-title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.qtube-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+}
+
+.qtube-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.qtube-question {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    background: #f8f9fa;
+    flex-shrink: 0; /* Prevent question section from shrinking */
+}
+
+.qtube-question strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.qtube-question p {
+    margin: 0;
+    color: #666;
+    font-style: italic;
+}
+
+.qtube-response {
+    padding: 15px;
+    flex-grow: 1; /* Allow response area to grow and take available space */
+    overflow-y: auto; /* Enable scrolling for content if it overflows within this section */
+}
+
+/* Styles for manual transcript input */
+.qtube-transcript-input-section {
+    padding: 15px;
+    background: #f0f0f0;
+    border-top: 1px solid #ddd;
+    flex-shrink: 0; /* Prevent this section from shrinking */
+}
+
+.qtube-transcript-input-section strong {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.qtube-transcript-input {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical; /* Allow vertical resizing */
+    font-size: 13px;
+    box-sizing: border-box; /* Include padding/border in element's total width/height */
+    margin-bottom: 10px;
+}
+
+.qtube-analyze-button {
+    width: 100%;
+    background: #4285f4;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.qtube-analyze-button:hover {
+    background: #3367d6;
+}
+
+.qtube-loading {
+    text-align: center;
+    padding: 20px;
+}
+
+.qtube-spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #4285f4;
+    border-radius: 50%;
+    animation: qtube-spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+@keyframes qtube-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.qtube-loading p {
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+}
+
+.qtube-answer {
+    animation: qtube-fadeIn 0.5s ease-in;
+}
+
+@keyframes qtube-fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.qtube-answer strong {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.qtube-answer p {
+    margin: 0 0 15px 0;
+    color: #444;
+    line-height: 1.5;
+}
+
+.qtube-timestamps {
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 6px;
+    border-left: 4px solid #4285f4;
+    margin-top: 15px; /* Add some space above timestamps */
+}
+
+.qtube-timestamps strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 13px;
+}
+
+.qtube-timestamps ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.qtube-timestamps li {
+    margin-bottom: 6px;
+    font-size: 13px;
+}
+
+.qtube-timestamps a {
+    color: #4285f4;
+    text-decoration: none;
+    font-weight: bold;
+    pointer-events: auto; 
+}
+
+.qtube-timestamps a:hover {
+    text-decoration: underline;
+}
+
+.qtube-error {
+    text-align: center;
+    padding: 20px;
+    background: #ffebee;
+    border-radius: 6px;
+    border-left: 4px solid #f44336;
+    position: relative; 
+    z-index: 10; 
+}
+
+.qtube-error strong {
+    display: block;
+    margin-bottom: 10px;
+    color: #c62828;
+}
+
+.qtube-error p {
+    margin: 0 0 15px 0;
+    color: #666;
+}
+
+.qtube-retry-btn {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.qtube-retry-btn:hover {
+    background: #d32f2f;
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+    #qtube-overlay {
+        left: 10px;
+        right: 10px;
+        width: auto;
+    }
+}
+
+/* Ensure overlay stays above YouTube elements */
+#qtube-overlay {
+    position: fixed !important;
+    z-index: 2147483647 !important;
+}
